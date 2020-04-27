@@ -74,33 +74,24 @@ const students = [
 ]
 
 const createStudentComponent = (student) => {
+    // checking if the student passed or not
+    let status;
     if (student.score >= 60) {
-        console.log("worked if")
-        return `
-        <div class="student">
-            <h1 class="xx-large passing">${student.name}</h1>
-            <section class="bordered dashed section--padded">${student.subject}</section>
-            <aside class="pushRight">${student.info}</aside>
-        </div>
-    `
-
+        status = "passing";
     } else {
-        console.log("worked else")
+        status = "failing"
+    }
+    // creating the element 
         return `
         <div class="student">
-            <h1 class="xx-large failing">${student.name}</h1>
+            <h1 class="xx-large ${status}">${student.name}</h1>
             <section class="bordered dashed section--padded">${student.subject}</section>
             <aside class="pushRight">${student.info}</aside>
         </div>
-    `
-    }
-}
-
+    `}
 
 for (let i = 0; i < students.length; i++) {
-    let studentComponent = ""
-    const student = students[i]
-    document.getElementById("container").innerHTML += createStudentComponent(student)
+    document.getElementById("container").innerHTML += createStudentComponent(students[i])
 }
 
 /* Iterate the array of students, and apply the correct style to the h1 depending on the score of the student being below 60, or above it.
